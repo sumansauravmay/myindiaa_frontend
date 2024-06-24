@@ -1,11 +1,14 @@
 
+import Allroutes from './AllRoutes/Allroutes';
 import './App.css';
+import Navbar from './Components/Navbar/Navbar';
 
 function App() {
   return (
-    <div className="text-xl font-bold underline">
-     E-commerce website
-    </div>
+    <>
+    <Navbar/>
+    <Allroutes/>
+    </>
   );
 }
 
