@@ -71,7 +71,7 @@ const Menproducts = () => {
               title={item.title}
               price={item.price}
               btnval="See Details"
-              handledetails={`products/${item.id}`}
+              handledetails={`/products/${item.id}`}
             />
           ))}
         </div>
