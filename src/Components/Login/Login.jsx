@@ -1,6 +1,42 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!email || !password) {
+      alert("put email or password!");
+    } else if (!regex.test(email)) {
+      alert("Eamil doesn't exist!");
+    } else {
+      axios
+        .get("https://myindiaa-deployement.onrender.com/register")
+        .then((res) => {
+          console.log("logindata", res.data);
+          checklogincreds(res.data);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+    }
+  };
+
+  const checklogincreds = (creds) => {
+    let x = creds.filter((item) => {
+      return item.email == email;
+    });
+
+    if (x.length > 0) {
+      alert("Login Successful!");
+      localStorage.setItem("email", JSON.stringify(x[0].email));
+    } else {
+      alert("Login Failed!");
+    }
+  };
+
   return (
     <div className="w-full">
       <h1 className="flex justify-center text-5xl font-bold text-blue-800">
@@ -21,6 +57,8 @@ const Login = () => {
               id="price"
               className="w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </div>
@@ -43,13 +81,18 @@ const Login = () => {
               id="price"
               className="w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </div>
       </div>
 
       <div className="flex justify-center">
-        <button className="p-2 bg-black text-white mt-5 rounded-lg">
+        <button
+          className="p-2 bg-black text-white mt-5 rounded-lg"
+          onClick={handleLogin}
+        >
           Login
         </button>
       </div>
