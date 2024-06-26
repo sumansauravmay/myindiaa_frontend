@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa";
 
 const Womenproducts = () => {
   const [data, setData] = useState([]);
-  const [searchdata, setSearchdata]=useState("");
+  const [searchdata, setSearchdata] = useState("");
 
   const getData = async () => {
     try {
@@ -23,6 +23,7 @@ const Womenproducts = () => {
   useEffect(() => {
     getData();
   }, []);
+  
   return (
     <div className="container mx-auto px-6">
       <div className="flex justify-center">
@@ -36,7 +37,7 @@ const Womenproducts = () => {
             type="text"
             className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-black ring-1 ring-inset ring-gray-300 placeholder:text-black focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             placeholder="Search"
-            onChange={(e)=>setSearchdata(e.target.value)}
+            onChange={(e) => setSearchdata(e.target.value)}
           />
         </div>
       </div>
@@ -51,17 +52,17 @@ const Womenproducts = () => {
               return item.category == "women";
             })
             .filter((item) => {
-                if (item === "All") {
-                  return item;
-                } else if (
-                  item.title.toLowerCase().includes(searchdata.toLowerCase()) ||
-                  item.description
-                    .toLowerCase()
-                    .includes(searchdata.toLowerCase())
-                ) {
-                  return item;
-                }
-              })
+              if (item === "All") {
+                return item;
+              } else if (
+                item.title.toLowerCase().includes(searchdata.toLowerCase()) ||
+                item.description
+                  .toLowerCase()
+                  .includes(searchdata.toLowerCase())
+              ) {
+                return item;
+              }
+            })
             .map((item) => (
               <ProductCard
                 key={item.id}
