@@ -15,7 +15,7 @@ const ProductsCategory = ({
           <div className="px-10 max-w-xl">
             <h2 className="text-2xl text-white font-semibold">{mentitle}</h2>
             <p className="mt-2 text-gray-400">{mendescription}</p>
-            <Link to="/login">
+            <Link to="/menproducts">
               <button className="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none">
                 <span>{shop}</span>
                 <svg
@@ -39,7 +39,7 @@ const ProductsCategory = ({
           <div className="px-10 max-w-xl">
             <h2 className="text-2xl text-white font-semibold">{womentitle}</h2>
             <p className="mt-2 text-gray-400">{womendescription}</p>
-            <Link to="/login">
+            <Link to="/womenproducts">
               <button className="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none">
                 <span>{shop}</span>
                 <svg
