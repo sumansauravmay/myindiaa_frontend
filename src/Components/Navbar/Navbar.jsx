@@ -1,9 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  let username = JSON.parse(localStorage.getItem("username")) || "";
+  console.log("name", username);
+
+  const handleloginfunc = () => {
+    if (username.length > 0) {
+      localStorage.removeItem("username");
+      alert("Logout done!");
+      window.location.reload();
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const handlesignupfunc = () => {
+    if (username.length > 0) {
+      window.location.reload();
+    } else {
+      navigate("/register");
+    }
+  };
+
   return (
     <div className="w-full">
       <nav className="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
@@ -14,7 +36,6 @@ const Navbar = () => {
                 <Link to="/">
                   <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
                     <span>MYIndiaa</span>
-                   
                   </span>
                 </Link>
 
@@ -52,19 +73,21 @@ const Navbar = () => {
                       Products
                     </Link>
 
-                    <Link
-                      to="/register"
-                      className="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none"
+                    <div
+                      onClick={handlesignupfunc}
+                      // to="/register"
+                      className="cursor-pointer w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none"
                     >
-                      Signup
-                    </Link>
+                      {username ? username : "Signup"}
+                    </div>
 
-                    <Link
-                      to="/login"
-                      className="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none"
+                    <div
+                      onClick={handleloginfunc}
+                      // to="/login"
+                      className="cursor-pointer w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none"
                     >
-                      Login
-                    </Link>
+                      {username ? "Logout" : "Login"}
+                    </div>
 
                     <Link
                       to="/cart"
@@ -91,21 +114,23 @@ const Navbar = () => {
             </li>
 
             <li className="mr-3 nav__item">
-              <Link
-                to="/register"
-                className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
+              <div
+                onClick={handlesignupfunc}
+                // to="/register"
+                className="cursor-pointer inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
               >
-                Signup
-              </Link>
+                {username ? username : "Signup"}
+              </div>
             </li>
 
             <li className="mr-3 nav__item">
-              <Link
-                to="/login"
-                className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
+              <div
+                onClick={handleloginfunc}
+                // to="/login"
+                className="cursor-pointer inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
               >
-                Login
-              </Link>
+                {username ? "Logout" : "Login"}
+              </div>
             </li>
           </ul>
         </div>

@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,11 +13,13 @@ const Login = () => {
       alert("put email or password!");
     } else if (!regex.test(email)) {
       alert("Eamil doesn't exist!");
+    } else if (password.length < 8) {
+      alert("Password length should be more 7");
     } else {
       axios
         .get("https://myindiaa-deployement.onrender.com/register")
         .then((res) => {
-          console.log("logindata", res.data);
+          // console.log("logindata", res.data);
           checklogincreds(res.data);
         })
         .catch((err) => {
@@ -31,9 +35,10 @@ const Login = () => {
 
     if (x.length > 0) {
       alert("Login Successful!");
-      localStorage.setItem("email", JSON.stringify(x[0].email));
+      navigate("/");
+      localStorage.setItem("username", JSON.stringify(x[0].name));
     } else {
-      alert("Login Failed!");
+      alert("Wrong Credentials!");
     }
   };
 
