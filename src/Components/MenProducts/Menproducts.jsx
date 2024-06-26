@@ -41,7 +41,7 @@ const Menproducts = () => {
         </div>
       </div>
 
-      {/* Products Data */}
+      {/*Men's Products Data */}
 
       <div className="mt-16">
         <h3 className="text-gray-600 text-2xl font-medium">Men's Products</h3>

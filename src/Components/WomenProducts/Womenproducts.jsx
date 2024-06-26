@@ -39,7 +39,7 @@ const Womenproducts = () => {
         </div>
       </div>
 
-      {/* Products Data */}
+      {/*women's Products Data */}
 
       <div className="mt-16">
         <h3 className="text-gray-600 text-2xl font-medium">Women's Products</h3>
