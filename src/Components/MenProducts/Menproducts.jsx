@@ -6,6 +6,7 @@ import { FaSearch } from "react-icons/fa";
 
 const Menproducts = () => {
   const [data, setData] = useState([]);
+  const [searchdata, setSearchdata]=useState("");
 
   const getData = async () => {
     try {
@@ -37,6 +38,7 @@ const Menproducts = () => {
             type="text"
             className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-black ring-1 ring-inset ring-gray-300 placeholder:text-black focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             placeholder="Search"
+            onChange={(e)=>setSearchdata(e.target.value)}
           />
         </div>
       </div>
@@ -49,6 +51,18 @@ const Menproducts = () => {
           {data
           .filter((item)=>{
             return item.category=="men"
+          })
+          .filter((item) => {
+            if (item === "All") {
+              return item;
+            } else if (
+              item.title.toLowerCase().includes(searchdata.toLowerCase()) ||
+              item.description
+                .toLowerCase()
+                .includes(searchdata.toLowerCase())
+            ) {
+              return item;
+            }
           })
           .map((item) => (
             <ProductCard
