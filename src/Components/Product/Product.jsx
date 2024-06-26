@@ -72,13 +72,19 @@ const Product = () => {
               }
             })
             .map((item) => (
+              <div>
               <ProductCard
                 key={item.id}
                 image={item.image}
                 title={item.title}
                 price={item.price}
                 btnval="See Details"
+                handledetails={`products/${item.id}`}
               />
+              {/* <button className="w-1/2 p-2 rounded bg-blue-600 text-white mx-20 mb-4 hover:bg-green-500 focus:outline-none focus:bg-blue-500">
+              See Details
+            </button> */}
+            </div>
             ))}
         </div>
       </div>

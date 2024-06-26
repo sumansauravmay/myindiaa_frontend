@@ -6,6 +6,7 @@ import Login from '../Components/Login/Login'
 import Cart from '../Components/Cart/Cart'
 import Menproducts from '../Components/MenProducts/Menproducts'
 import Womenproducts from '../Components/WomenProducts/Womenproducts'
+import ProductsDetails from '../Components/ProductsDetails.jsx/ProductsDetails'
 
 const Allroutes = () => {
   return (
@@ -16,6 +17,7 @@ const Allroutes = () => {
       <Route path="/cart" element={<Cart/>}></Route>
       <Route path="/menproducts" element={<Menproducts/>}></Route>
       <Route path="/womenproducts" element={<Womenproducts/>}></Route>
+      <Route path="/products/:product_id" element={<ProductsDetails/>}></Route>
     </Routes>
   )
 }

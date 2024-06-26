@@ -23,7 +23,7 @@ const Womenproducts = () => {
   useEffect(() => {
     getData();
   }, []);
-  
+
   return (
     <div className="container mx-auto px-6">
       <div className="flex justify-center">
@@ -70,6 +70,7 @@ const Womenproducts = () => {
                 title={item.title}
                 price={item.price}
                 btnval="See Details"
+                handledetails={`products/${item.id}`}
               />
             ))}
         </div>
