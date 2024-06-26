@@ -14,11 +14,7 @@ const Navbar = () => {
                 <Link href="/">
                   <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
                     <span>MYIndiaa</span>
-                    <input
-                      className="border-2 border-indigo-500 rounded-lg w-full"
-                      type="text"
-                      placeholder="search"
-                    />
+                   
                   </span>
                 </Link>
 
