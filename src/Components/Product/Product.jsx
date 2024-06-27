@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
-import ProductCard from "./ProductCard";
-import ProductsCategory from "./ProductsCategory";
+import ProductCard from "../../Pages/ProductCard";
+import ProductsCategory from "../../Pages/ProductsCategory";
 
 const Product = () => {
   const [data, setData] = useState([]);

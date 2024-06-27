@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from "react";
-import ProductCard from "../Product/ProductCard";
+import ProductCard from "../../Pages/ProductCard";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 
