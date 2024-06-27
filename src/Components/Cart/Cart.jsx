@@ -4,8 +4,10 @@ import { cart } from "../../Redux/CartReducer/action";
 import axios from "axios";
 import CartCard from "./CartCard";
 import Loading from "../../Pages/Loading";
+import CartCheckout from "../../Pages/CartCheckout";
 
 const Cart = () => {
+  const dispatch=useDispatch()
   const [data, setData] = useState([]);
   const [loading, setLoading]=useState(false);
   const cartdata = useSelector((store) => store.cartReducer.cart);
@@ -43,7 +45,7 @@ const Cart = () => {
               image={item.image}
               title={item.title}
               price={item.price}
-              checkout={"Proceed to checkout"}
+              deletebtn={"Delete"}
             />
           ))
         : data.length > 0
@@ -53,10 +55,10 @@ const Cart = () => {
               image={item.image}
               title={item.title}
               price={item.price}
-              checkout={"Delete"}
+              deletebtn={"Delete"}
             />
           ))
-        : "No Cart Value"}
+        : "No Data Found in The Cart"}
     </>
   );
 };
