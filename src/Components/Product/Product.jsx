@@ -3,18 +3,22 @@ import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import ProductCard from "../../Pages/ProductCard";
 import ProductsCategory from "../../Pages/ProductsCategory";
+import Loading from "../../Pages/Loading";
 
 const Product = () => {
+  const [loading, setLoading]=useState(false);
   const [data, setData] = useState([]);
   const [searchdata, setSearchdata] = useState("");
 
   const getData = async () => {
+    setLoading(true)
     try {
       axios
         .get("https://myindiaa-deployement.onrender.com/products")
         .then((res) => {
           console.log(res.data);
           setData(res.data);
+          setLoading(false)
         });
     } catch (err) {
       console.log(err);
@@ -24,6 +28,13 @@ const Product = () => {
   useEffect(() => {
     getData();
   }, []);
+
+if(loading){
+  return <Loading/>
+}
+
+
+
 
   return (
     <div className="container mx-auto px-6">
@@ -72,18 +83,15 @@ const Product = () => {
               }
             })
             .map((item) => (
-              <div>
+              <div  key={item.id}>
               <ProductCard
-                key={item.id}
                 image={item.image}
                 title={item.title}
                 price={item.price}
                 btnval="See Details"
                 handledetails={`products/${item.id}`}
               />
-              {/* <button className="w-1/2 p-2 rounded bg-blue-600 text-white mx-20 mb-4 hover:bg-green-500 focus:outline-none focus:bg-blue-500">
-              See Details
-            </button> */}
+              
             </div>
             ))}
         </div>

@@ -1,42 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { cart } from "../../Redux/CartReducer/action";
+import axios from "axios";
+import CartCard from "./CartCard";
+import Loading from "../../Pages/Loading";
 
 const Cart = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading]=useState(false);
   const cartdata = useSelector((store) => store.cartReducer.cart);
   console.log("cartfromstore", cartdata);
 
+  const getData = () => {
+    setLoading(true)
+    return axios
+      .get("https://myindiaa-deployement.onrender.com/cart")
+      .then((res) => {
+        setLoading(false)
+        setData(res.data);
+        console.log("cartRefresh", res.data);
+      });
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      await getData();
+    }
+    fetchData();
+  }, []);
+
+
+  if(loading){
+    return <Loading/>
+  }
+
   return (
     <>
-      {cartdata.map((item) => (
-        <div className="md:flex mt-8 md:-mx-4 w-1/2 shadow-lg shadow-indigo-500/40">
-          <div className="h-92 md:mx-4 rounded-md bg-cover bg-center md:w-1/2">
-            <div className="flex items-center h-full">
-              <div className="px-10 max-w-xl">
-                <img className="h-[10rem]" src={item.image} alt="pic" />
-                <p className="mt-2 text-black text-2xl">
-                  Price: {item.price} ₹
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-full h-92 mt-8 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:mt-0 md:w-1/2">
-            <div className="bg-opacity-50 flex items-center h-full">
-              <div className="px-10 max-w-xl">
-                <h2 className="text-3xl text-black font-semibold">
-                  {item.title}
-                </h2>
-                <p className="mt-2 text-black text-2xl">
-                  Price: {item.price} ₹
-                </p>
-                <button className="mt-2 p-1 text-white text-2xl bg-indigo-500 rounded-lg">
-                  Proceed To Checkout
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
+      {cartdata.length > 0
+        ? cartdata[0].map((item) => (
+            <CartCard
+              key={item.id}
+              image={item.image}
+              title={item.title}
+              price={item.price}
+              checkout={"Proceed to checkout"}
+            />
+          ))
+        : data.length > 0
+        ? data.map((item) => (
+            <CartCard
+              key={item.id}
+              image={item.image}
+              title={item.title}
+              price={item.price}
+              checkout={"Delete"}
+            />
+          ))
+        : "No Cart Value"}
     </>
   );
 };

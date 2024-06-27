@@ -2,19 +2,23 @@ import React,{useState, useEffect} from "react";
 import ProductCard from "../../Pages/ProductCard";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
+import Loading from "../../Pages/Loading";
 
 
 const Menproducts = () => {
+  const [loading, setLoading]=useState(false);
   const [data, setData] = useState([]);
   const [searchdata, setSearchdata]=useState("");
 
   const getData = async () => {
+    setLoading(true)
     try {
       axios
         .get("https://myindiaa-deployement.onrender.com/products")
         .then((res) => {
           console.log(res.data);
           setData(res.data);
+          setLoading(false)
         });
     } catch (err) {
       console.log(err);
@@ -24,6 +28,12 @@ const Menproducts = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  if(loading){
+    return <Loading/>
+  }
+
+
 
   return (
     <div className="container mx-auto px-6">

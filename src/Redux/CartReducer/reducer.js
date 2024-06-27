@@ -1,7 +1,10 @@
 import {
   GET_CART_FAILURE,
   GET_CART_SUCCESS,
-  GET_CART_REQUEST
+  GET_CART_REQUEST,
+//   GET_CART_DATA_FAILURE,
+//   GET_CART_DATA_SUCCESS,
+//   GET_CART_DATA_REQUEST,
 } from "./actionType";
 
 const initialState = {
@@ -22,7 +25,7 @@ export const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        cart: payload,
+        cart: [...state.cart, payload],
       };
     case GET_CART_FAILURE:
       return {
@@ -31,6 +34,24 @@ export const reducer = (state = initialState, { type, payload }) => {
         isError: true,
       };
 
+    // case GET_CART_DATA_REQUEST:
+    //   return {
+    //     ...state,
+    //     isLoading: true,
+    //   };
+
+    // case GET_CART_DATA_SUCCESS:
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     cart: payload,
+    //   };
+    // case GET_CART_DATA_FAILURE:
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     isError: true,
+    //   };
     default:
       return state;
   }
