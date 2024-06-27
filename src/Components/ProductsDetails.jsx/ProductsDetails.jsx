@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { cart } from "../../Redux/CartReducer/action";
 
 const ProductsDetails = () => {
+  const dispatch=useDispatch();
   const { product_id } = useParams();
   const [productDetails, setProductDetails] = useState({});
 
@@ -10,7 +13,7 @@ const ProductsDetails = () => {
     axios
       .get(`https://myindiaa-deployement.onrender.com/products/${product_id}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setProductDetails(res.data);
       });
   };
@@ -45,7 +48,9 @@ const ProductsDetails = () => {
             <p className="mt-2 text-black text-2xl">
               Price: {productDetails.price} ₹
             </p>
-            <button className="mt-2 p-1 text-white text-2xl bg-indigo-500 rounded-lg">
+            <button className="mt-2 p-1 text-white text-2xl bg-indigo-500 rounded-lg"
+            onClick={()=> dispatch(cart([productDetails]))}
+            >
               Add to cart
             </button>
           </div>
