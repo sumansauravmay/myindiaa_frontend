@@ -38,12 +38,12 @@ const ProductsDetails = () => {
             <p className="mt-2 text-black text-xl">
               {productDetails.description}
             </p>
-            <p className="mt-2 text-black text-lg">
+            {/* <p className="mt-2 text-black text-lg">
               Category: {productDetails.category}
-            </p>
-            {/* <p className="mt-2 text-black">Rating: {productDetails.rating.rate}- {productDetails.rating.count}</p> */}
+            </p> */}
+            {/* <p className="mt-2 text-black">Rating: {productDetails.rating.rate}</p> */}
             <p className="mt-2 text-black text-2xl">
-              Price: {productDetails.price}
+              Price: {productDetails.price} ₹
             </p>
             <button className="mt-2 p-1 text-white text-2xl bg-indigo-500 rounded-lg">
               Add to cart

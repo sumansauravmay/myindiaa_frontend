@@ -9,7 +9,7 @@ const ProductCard = ({ image, title, price, btnval, handledetails }) => {
       </div>
       <div className="px-5 py-3">
         <h3 className="text-gray-700 uppercase">{title}</h3>
-        <span className="text-gray-500 mt-2">{price} Rs</span>
+        <span className="text-gray-500 mt-2">{price} ₹</span>
       </div>
       <Link to={handledetails}>
       <button className="w-1/2 p-2 rounded bg-blue-600 text-white mx-20 mb-4 hover:bg-green-500 focus:outline-none focus:bg-blue-500">
