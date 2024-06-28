@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ProductCard from "../../Pages/ProductCard";
+import ProductCard from "../../Components/ProductCard";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
-import Loading from "../../Pages/Loading";
+import Loading from "../../Components/Loading";
 import { Helmet } from "react-helmet";
 
 const Womenproducts = () => {

@@ -5,10 +5,10 @@ import {
   deletecart,
   updatecartvalue,
 } from "../../Redux/CartReducer/action";
-import CartCard from "./CartCard";
-import Loading from "../../Pages/Loading";
-import CartCheckout from "./CartCheckout";
-import NoCartData from "../../Pages/NoCartData";
+import CartCard from "../../Components/CartCard";
+import Loading from "../../Components/Loading";
+import CartCheckout from "../../Components/CartCheckout";
+import NoCartData from "../../Components/NoCartData";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 

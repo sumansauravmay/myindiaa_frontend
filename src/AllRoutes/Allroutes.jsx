@@ -1,12 +1,12 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Product from '../Components/Product/Product'
-import Register from '../Components/Register/Register'
-import Login from '../Components/Login/Login'
-import Cart from '../Components/Cart/Cart'
-import Menproducts from '../Components/MenProducts/Menproducts'
-import Womenproducts from '../Components/WomenProducts/Womenproducts'
-import ProductsDetails from '../Components/ProductsDetails.jsx/ProductsDetails'
+import Product from '../Pages/Product/Product'
+import Register from '../Pages/Register/Register'
+import Login from '../Pages/Login/Login'
+import Cart from '../Pages/Cart/Cart'
+import Menproducts from '../Pages/MenProducts/Menproducts'
+import Womenproducts from '../Pages/WomenProducts/Womenproducts'
+import ProductsDetails from '../Pages/ProductsDetails.jsx/ProductsDetails'
 
 const Allroutes = () => {
   return (

@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import ProductCard from "../../Components/ProductCard";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
-import ProductCard from "../../Pages/ProductCard";
-import ProductsCategory from "../../Pages/ProductsCategory";
-import Loading from "../../Pages/Loading";
+import Loading from "../../Components/Loading";
 import { Helmet } from "react-helmet";
 
-const Product = () => {
+const Menproducts = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [searchdata, setSearchdata] = useState("");
@@ -37,8 +36,8 @@ const Product = () => {
   return (
     <>
       <Helmet>
-        <title>Home Page</title>
-        <meta name="description" content="Home page description" />
+        <title>Men's Product Page</title>
+        <meta name="description" content="Men Product page description" />
       </Helmet>
 
       <div className="container mx-auto px-6">
@@ -58,22 +57,15 @@ const Product = () => {
           </div>
         </div>
 
-        {/* Products Category */}
-
-        <ProductsCategory
-          mentitle="Men's Products"
-          mendescription="Stylish products are designed for the modern man."
-          shop="Shop Now"
-          womentitle="Women's Products"
-          womendescription="Stylish products are designed for the modern woman."
-        />
-
-        {/* Products Data */}
+        {/*Men's Products Data */}
 
         <div className="mt-16">
-          <h3 className="text-gray-600 text-2xl font-medium">Products</h3>
+          <h3 className="text-gray-600 text-2xl font-medium">Men's Products</h3>
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
             {data
+              .filter((item) => {
+                return item.category === "men";
+              })
               .filter((item) => {
                 if (item === "All") {
                   return item;
@@ -87,15 +79,14 @@ const Product = () => {
                 }
               })
               .map((item) => (
-                <div key={item.id}>
-                  <ProductCard
-                    image={item.image}
-                    title={item.title}
-                    price={item.price}
-                    btnval="See Details"
-                    handledetails={`products/${item.id}`}
-                  />
-                </div>
+                <ProductCard
+                  key={item.id}
+                  image={item.image}
+                  title={item.title}
+                  price={item.price}
+                  btnval="See Details"
+                  handledetails={`/products/${item.id}`}
+                />
               ))}
           </div>
         </div>
@@ -104,4 +95,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Menproducts;

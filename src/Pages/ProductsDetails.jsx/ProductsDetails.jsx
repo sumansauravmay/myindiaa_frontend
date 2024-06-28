@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cart } from "../../Redux/CartReducer/action";
-import Loading from "../../Pages/Loading";
+import Loading from "../../Components/Loading";
+import { Helmet } from 'react-helmet';
 
 const ProductsDetails = () => {
   const [loading, setLoading] = useState(false);
@@ -31,6 +32,11 @@ const ProductsDetails = () => {
   }
 
   return (
+    <>
+    <Helmet>
+        <title>Product Details Page</title>
+        <meta name="description" content="Product Details Page description" />
+      </Helmet>
     <div className="md:flex mt-8 md:-mx-4">
       <div className="w-full h-92 md:mx-4 rounded-md bg-cover bg-center md:w-1/2 shadow-lg shadow-indigo-500/40">
         <div className="flex items-center h-full">
@@ -73,6 +79,7 @@ const ProductsDetails = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
