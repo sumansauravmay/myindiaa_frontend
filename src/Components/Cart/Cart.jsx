@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cart, deletecart } from "../../Redux/CartReducer/action";
+import {
+  cart,
+  deletecart,
+  updatecartvalue,
+} from "../../Redux/CartReducer/action";
 import CartCard from "./CartCard";
 import Loading from "../../Pages/Loading";
 import CartCheckout from "./CartCheckout";
@@ -12,10 +16,13 @@ const Cart = () => {
   console.log("cartfromstore", cartdata);
 
   useEffect(() => {
-    setLoading(true);
-    dispatch(cart());
-    setLoading(false);
-  }, []);
+    const fetchCartData = async () => {
+      setLoading(true);
+      await dispatch(cart());
+      setLoading(false);
+    };
+    fetchCartData();
+  }, [dispatch]);
 
   const handleDelete = (id) => {
     dispatch(deletecart(id));
@@ -29,15 +36,27 @@ const Cart = () => {
   };
 
   const calculateDeliveryCharges = () => {
-    if (calculateAmount() > 1000) {
-      return 0.0;
+    if (calculateAmount() >= 1000) {
+      return 0;
     } else {
-      return 100.0;
+      return 100;
     }
   };
 
+  let x;
   const calculateTotalAmount = () => {
-    return calculateAmount() + calculateDeliveryCharges();
+    x = calculateAmount() + calculateDeliveryCharges();
+    return x;
+  };
+
+  const handleMessage = () => {
+    if (calculateAmount() >= 1000) {
+      return "Congratulations, You got free delivery!";
+    } else {
+      let y = 1000 - calculateAmount();
+      console.log(y);
+      return `Add ${y} more to get free delivery!`;
+    }
   };
 
   if (loading) {
@@ -55,13 +74,25 @@ const Cart = () => {
               title={item.title}
               price={item.price}
               quantity={item.quantity}
+              handleDisable={item.quantity === 1}
               handleDelete={() => handleDelete(item.id)}
+              handleInc={() =>
+                dispatch(
+                  updatecartvalue(item.id, { quantity: item.quantity + 1 })
+                )
+              }
+              handleDec={() =>
+                dispatch(
+                  updatecartvalue(item.id, { quantity: item.quantity - 1 })
+                )
+              }
             />
           ))}
           <CartCheckout
             amount={calculateAmount()}
             delivery={calculateDeliveryCharges()}
             totalAmount={calculateTotalAmount()}
+            message={handleMessage()}
           />
         </>
       ) : (

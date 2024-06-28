@@ -5,6 +5,9 @@ import {
   REMOVE_CART_ITEM_REQUEST,
   REMOVE_CART_ITEM_FAILED,
   REMOVE_CART_ITEM_SUCCESS,
+  UPDATE_CART_FAILED,
+  UPDATE_CART_REQUEST,
+  UPDATE_CART_SUCCESS,
 } from "./actionType";
 
 const initialState = {
@@ -55,7 +58,28 @@ export const reducer = (state = initialState, { type, payload }) => {
         isError: true,
       };
     }
-
+    case UPDATE_CART_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+        isError: false,
+      };
+    }
+    case UPDATE_CART_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        isError: false,
+        cart: payload
+      };
+    }
+    case UPDATE_CART_FAILED: {
+      return {
+        ...state,
+        loading: false,
+        isError: true,
+      };
+    }
     default:
       return state;
   }
