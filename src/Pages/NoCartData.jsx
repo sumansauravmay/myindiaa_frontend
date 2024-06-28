@@ -2,14 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const NoCartData = () => {
-    const navigate=useNavigate();
+  const navigate = useNavigate();
 
-const handleClick=()=>{
-navigate("/")
-}
-
-
-
+  const handleClick = () => {
+    navigate("/");
+  };
 
   return (
     <div className="flex justify-center">
@@ -17,7 +14,10 @@ navigate("/")
         <h5 className="text-xl text-black font-bold text-center">
           No Item in the Cart
         </h5>
-        <button className="mt-5 w-full p-1 text-white text-2xl bg-indigo-500 rounded-lg" onClick={handleClick}>
+        <button
+          className="mt-5 w-full p-1 text-white text-2xl bg-indigo-500 rounded-lg"
+          onClick={handleClick}
+        >
           Go To Home
         </button>
       </div>
