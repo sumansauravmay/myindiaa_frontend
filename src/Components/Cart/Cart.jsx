@@ -74,7 +74,8 @@ const Cart = () => {
               title={item.title}
               price={item.price}
               quantity={item.quantity}
-              handleDisable={item.quantity === 1}
+              handleDecDisable={item.quantity === 1}
+              handleIncDisable={item.quantity === 5}
               handleDelete={() => handleDelete(item.id)}
               handleInc={() =>
                 dispatch(
