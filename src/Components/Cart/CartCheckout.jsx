@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartCheckout = ({ totalAmount, amount, delivery, message }) => {
+const CartCheckout = ({ totalAmount, amount, delivery, message, handlechekcout }) => {
   return (
     <div className="flex justify-center">
       <div className="h-64 md:h-72 sm:h-76 lg:w-1/4 md:w-1/2 sm:w-2/3 mt-10 shadow-lg shadow-indigo-500/40">
@@ -19,7 +19,7 @@ const CartCheckout = ({ totalAmount, amount, delivery, message }) => {
             <h5 className="text-xl text-black font-bold">Total Amount: </h5>
             <p className="text-black text-xl">{totalAmount}/-</p>
           </div>
-          <button className="w-full mt-10 p-1 text-white text-2xl bg-indigo-500 rounded-lg">
+          <button className="w-full mt-10 p-1 text-white text-2xl bg-indigo-500 rounded-lg" onClick={handlechekcout}>
             Checkout
           </button>
         </div>
