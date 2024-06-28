@@ -6,19 +6,19 @@ import { cart } from "../../Redux/CartReducer/action";
 import Loading from "../../Pages/Loading";
 
 const ProductsDetails = () => {
-  const [loading, setLoading]=useState(false);
-  const dispatch=useDispatch();
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
   const { product_id } = useParams();
   const [productDetails, setProductDetails] = useState({});
 
   const getData = () => {
-    setLoading(true)
+    setLoading(true);
     axios
       .get(`https://myindiaa-deployement.onrender.com/products/${product_id}`)
       .then((res) => {
         // console.log(res.data);
         setProductDetails(res.data);
-        setLoading(false)
+        setLoading(false);
       });
   };
 
@@ -26,13 +26,9 @@ const ProductsDetails = () => {
     getData();
   }, [product_id]);
 
-  if(loading){
-    return <Loading/>
+  if (loading) {
+    return <Loading />;
   }
-
-
-
-
 
   return (
     <div className="md:flex mt-8 md:-mx-4">
@@ -53,15 +49,23 @@ const ProductsDetails = () => {
             <p className="mt-2 text-black text-xl">
               {productDetails.description}
             </p>
-            {/* <p className="mt-2 text-black text-lg">
-              Category: {productDetails.category}
-            </p> */}
-            {/* <p className="mt-2 text-black">Rating: {productDetails.rating.rate}</p> */}
+
+            <div className="flex space-x-1 text-xl">
+              <h5 className="mt-2 text-black">Rating: </h5>
+              <h5 className="mt-2 text-black font-semibold">
+                {productDetails.rating?.rate}
+              </h5>
+              <p className="mt-2 text-black font-semibold">
+                ({productDetails.rating?.count})
+              </p>
+            </div>
+
             <p className="mt-2 text-black text-2xl">
               Price: {productDetails.price} ₹
             </p>
-            <button className="mt-2 p-1 text-white text-2xl bg-indigo-500 rounded-lg"
-            onClick={()=> dispatch(cart(productDetails))}
+            <button
+              className="mt-2 p-1 text-white text-2xl bg-indigo-500 rounded-lg"
+              onClick={() => dispatch(cart(productDetails))}
             >
               Add to cart
             </button>

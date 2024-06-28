@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { cart, deletecart } from "../../Redux/CartReducer/action";
 import CartCard from "./CartCard";
 import Loading from "../../Pages/Loading";
+import CartCheckout from "./CartCheckout";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -16,12 +17,28 @@ const Cart = () => {
     setLoading(false);
   }, []);
 
+  const handleDelete = (id) => {
+    dispatch(deletecart(id));
+  };
 
-const handleDelete=(id)=>{
-  dispatch(deletecart(id))
-}
+  const calculateAmount = () => {
+    return cartdata.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  };
 
+  const calculateDeliveryCharges = () => {
+    if (calculateAmount() > 1000) {
+      return 0.0;
+    } else {
+      return 100.0;
+    }
+  };
 
+  const calculateTotalAmount = () => {
+    return calculateAmount() + calculateDeliveryCharges();
+  };
 
   if (loading) {
     return <Loading />;
@@ -29,18 +46,27 @@ const handleDelete=(id)=>{
 
   return (
     <>
-      {cartdata.length > 0
-        ? cartdata.map((item) => (
+      {cartdata.length > 0 ? (
+        <>
+          {cartdata.map((item) => (
             <CartCard
               key={item.id}
               image={item.image}
               title={item.title}
               price={item.price}
               quantity={item.quantity}
-              handleDelete={()=>handleDelete(item.id)}
+              handleDelete={() => handleDelete(item.id)}
             />
-          ))
-        : "No Data Found in The Cart"}
+          ))}
+          <CartCheckout
+            amount={calculateAmount()}
+            delivery={calculateDeliveryCharges()}
+            totalAmount={calculateTotalAmount()}
+          />
+        </>
+      ) : (
+        "No Data Found in The Cart"
+      )}
     </>
   );
 };

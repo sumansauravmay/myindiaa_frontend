@@ -6,19 +6,19 @@ import ProductsCategory from "../../Pages/ProductsCategory";
 import Loading from "../../Pages/Loading";
 
 const Product = () => {
-  const [loading, setLoading]=useState(false);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [searchdata, setSearchdata] = useState("");
 
   const getData = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       axios
         .get("https://myindiaa-deployement.onrender.com/products")
         .then((res) => {
           console.log(res.data);
           setData(res.data);
-          setLoading(false)
+          setLoading(false);
         });
     } catch (err) {
       console.log(err);
@@ -29,12 +29,9 @@ const Product = () => {
     getData();
   }, []);
 
-if(loading){
-  return <Loading/>
-}
-
-
-
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="container mx-auto px-6">
@@ -83,16 +80,15 @@ if(loading){
               }
             })
             .map((item) => (
-              <div  key={item.id}>
-              <ProductCard
-                image={item.image}
-                title={item.title}
-                price={item.price}
-                btnval="See Details"
-                handledetails={`products/${item.id}`}
-              />
-              
-            </div>
+              <div key={item.id}>
+                <ProductCard
+                  image={item.image}
+                  title={item.title}
+                  price={item.price}
+                  btnval="See Details"
+                  handledetails={`products/${item.id}`}
+                />
+              </div>
             ))}
         </div>
       </div>
