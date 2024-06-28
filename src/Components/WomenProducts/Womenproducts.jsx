@@ -37,9 +37,9 @@ const Womenproducts = () => {
   return (
     <div className="container mx-auto px-6">
       <div className="flex justify-center">
-        <div class="relative mt-2 rounded-md shadow-sm">
-          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <span class="text-black sm:text-sm">
+        <div className="relative mt-2 rounded-md shadow-sm">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <span className="text-black sm:text-sm">
               <FaSearch />
             </span>
           </div>
