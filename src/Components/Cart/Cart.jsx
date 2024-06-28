@@ -8,6 +8,7 @@ import {
 import CartCard from "./CartCard";
 import Loading from "../../Pages/Loading";
 import CartCheckout from "./CartCheckout";
+import NoCartData from "../../Pages/NoCartData";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -103,7 +104,7 @@ const Cart = () => {
           />
         </>
       ) : (
-        "No Data Found in The Cart"
+        <NoCartData/>
       )}
     </>
   );
