@@ -46,6 +46,12 @@ const Cart = () => {
   let x;
   const calculateTotalAmount = () => {
     x = calculateAmount() + calculateDeliveryCharges();
+    localStorage.setItem("CartAmount", JSON.stringify(x));
+    // if (cartdata.length > 0) {
+    //   localStorage.setItem("CartAmount", JSON.stringify(x));
+    // } else {
+    //   localStorage.removeItem("CartAmount");
+    // }
     return x;
   };
 
