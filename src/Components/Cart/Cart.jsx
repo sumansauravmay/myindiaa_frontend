@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cart } from "../../Redux/CartReducer/action";
+import { cart, deletecart } from "../../Redux/CartReducer/action";
 import CartCard from "./CartCard";
 import Loading from "../../Pages/Loading";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const cartdata = useSelector((store) => store.cartReducer.cart);
   console.log("cartfromstore", cartdata);
 
   useEffect(() => {
+    setLoading(true);
     dispatch(cart());
+    setLoading(false);
   }, []);
 
-  // if (loading) {
-  //   return <Loading />;
-  // }
+
+const handleDelete=(id)=>{
+  dispatch(deletecart(id))
+}
+
+
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -28,7 +37,7 @@ const Cart = () => {
               title={item.title}
               price={item.price}
               quantity={item.quantity}
-              deletebtn={"Delete"}
+              handleDelete={()=>handleDelete(item.id)}
             />
           ))
         : "No Data Found in The Cart"}

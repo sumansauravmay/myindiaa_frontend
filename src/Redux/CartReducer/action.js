@@ -2,9 +2,9 @@ import {
   GET_CART_FAILURE,
   GET_CART_SUCCESS,
   GET_CART_REQUEST,
-  //   GET_CART_DATA_FAILURE,
-  //   GET_CART_DATA_SUCCESS,
-  //   GET_CART_DATA_REQUEST,
+  REMOVE_CART_ITEM_REQUEST,
+  REMOVE_CART_ITEM_FAILED,
+  REMOVE_CART_ITEM_SUCCESS,
 } from "./actionType";
 import axios from "axios";
 
@@ -20,17 +20,27 @@ const getCartSuccessAction = (payload) => {
   return { type: GET_CART_SUCCESS, payload };
 };
 
+const getRemoveItemReqest = () => {
+  return { type: REMOVE_CART_ITEM_REQUEST };
+};
 
+const getRemoveItemSuccess = (payload) => {
+  return { type: REMOVE_CART_ITEM_SUCCESS, payload };
+};
 
-export const cart = (data) => async (dispatch) => {
+const getRemoveItemFailed = () => {
+  return { type: REMOVE_CART_ITEM_FAILED };
+};
+
+export const cart = (product) => async (dispatch) => {
   dispatch(getCartRequestAction());
-  if (data) {
-    let data2={
-      ...data,
-      quantity:1
-    }
+  if (product) {
+    let data = {
+      ...product,
+      quantity: 1,
+    };
     return axios
-      .post("https://myindiaa-deployement.onrender.com/cart", data2)
+      .post("https://myindiaa-deployement.onrender.com/cart", data)
       .then((res) => {
         axios
           .get("https://myindiaa-deployement.onrender.com/cart")
@@ -57,16 +67,22 @@ export const cart = (data) => async (dispatch) => {
   }
 };
 
-// export const cartData=()=>(dispatch)=>{
-//     dispatch(getCartDataRequestAction());
-//     return axios
-//       .get("https://myindiaa-deployement.onrender.com/cart")
-//       .then((res) => {
-//         console.log("cart",res.data);
-//         dispatch(getCartDataSuccessAction(res.data));
-//       })
-//       .catch((err) => {
-//         console.log("err2", err);
-//         dispatch(getCartDataErrorAction());
-//       });
-// }
+export const deletecart=(id)=>(dispatch)=>{
+  // console.log("id", id)
+    dispatch(getRemoveItemReqest());
+    return axios
+      .delete(`https://myindiaa-deployement.onrender.com/cart/${id}`)
+      .then((res) => {
+        axios
+        .get("https://myindiaa-deployement.onrender.com/cart")
+        .then((res) => {
+          console.log("deleted",res.data);
+          dispatch(getRemoveItemSuccess(res.data));
+        })
+       
+      })
+      .catch((err) => {
+        console.log("err2", err);
+        dispatch(getRemoveItemFailed());
+      });
+}

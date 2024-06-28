@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartCard = ({ image, title, price, deletebtn, quantity }) => {
+const CartCard = ({ image, title, price, quantity, handleDelete }) => {
   return (
     <div className="flex justify-center">
     <div className="md:flex mt-8 md:-mx-4 w-1/2 shadow-lg shadow-indigo-500/40">
@@ -23,8 +23,10 @@ const CartCard = ({ image, title, price, deletebtn, quantity }) => {
           <div className="px-10 max-w-xl">
             <h2 className="text-3xl text-black font-semibold">{title}</h2>
             <p className="mt-2 text-black text-2xl">Price: {price} ₹</p>
-            <button className="mt-2 p-1 text-white text-2xl bg-indigo-500 rounded-lg">
-              {deletebtn}
+            <button className="mt-2 p-1 text-white text-2xl bg-indigo-500 rounded-lg"
+             onClick={handleDelete}
+             >
+              Delete
             </button>
           </div>
         </div>

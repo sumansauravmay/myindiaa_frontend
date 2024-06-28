@@ -2,14 +2,14 @@ import {
   GET_CART_FAILURE,
   GET_CART_SUCCESS,
   GET_CART_REQUEST,
-  //   GET_CART_DATA_FAILURE,
-  //   GET_CART_DATA_SUCCESS,
-  //   GET_CART_DATA_REQUEST,
+  REMOVE_CART_ITEM_REQUEST,
+  REMOVE_CART_ITEM_FAILED,
+  REMOVE_CART_ITEM_SUCCESS,
 } from "./actionType";
 
 const initialState = {
   cart: [],
-  isLoading: false,
+  loading: false,
   isError: false,
 };
 
@@ -18,21 +18,44 @@ export const reducer = (state = initialState, { type, payload }) => {
     case GET_CART_REQUEST:
       return {
         ...state,
-        isLoading: true,
+        loading: true,
       };
 
     case GET_CART_SUCCESS:
       return {
         ...state,
-        isLoading: false,
+        loading: false,
         cart: payload,
       };
     case GET_CART_FAILURE:
       return {
         ...state,
-        isLoading: false,
+        loading: false,
         isError: true,
       };
+    case REMOVE_CART_ITEM_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+        isError: false,
+      };
+    }
+    case REMOVE_CART_ITEM_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        isError: false,
+        cart: payload,
+      };
+    }
+    case REMOVE_CART_ITEM_FAILED: {
+      return {
+        ...state,
+        loading: false,
+        isError: true,
+      };
+    }
+
     default:
       return state;
   }
