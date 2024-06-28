@@ -67,22 +67,21 @@ export const cart = (product) => async (dispatch) => {
   }
 };
 
-export const deletecart=(id)=>(dispatch)=>{
+export const deletecart = (id) => (dispatch) => {
   // console.log("id", id)
-    dispatch(getRemoveItemReqest());
-    return axios
-      .delete(`https://myindiaa-deployement.onrender.com/cart/${id}`)
-      .then((res) => {
-        axios
+  dispatch(getRemoveItemReqest());
+  return axios
+    .delete(`https://myindiaa-deployement.onrender.com/cart/${id}`)
+    .then((res) => {
+      axios
         .get("https://myindiaa-deployement.onrender.com/cart")
         .then((res) => {
-          console.log("deleted",res.data);
+          console.log("dataAfterdeleted", res.data);
           dispatch(getRemoveItemSuccess(res.data));
-        })
-       
-      })
-      .catch((err) => {
-        console.log("err2", err);
-        dispatch(getRemoveItemFailed());
-      });
-}
+        });
+    })
+    .catch((err) => {
+      console.log("err2", err);
+      dispatch(getRemoveItemFailed());
+    });
+};
