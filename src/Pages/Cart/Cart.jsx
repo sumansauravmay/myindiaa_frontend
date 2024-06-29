@@ -10,17 +10,16 @@ import CartCard from "../../Components/CartCard";
 import Loading from "../../Components/Loading";
 import CartCheckout from "../../Components/CartCheckout";
 import NoCartData from "../../Components/NoCartData";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const Cart = () => {
-  // const location = useLocation();
-  // console.log("location in cart", location);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const cartdata = useSelector((store) => store.cartReducer.cart);
   // console.log("cartfromstore", cartdata);
+
 
   useEffect(() => {
     const fetchCartData = async () => {

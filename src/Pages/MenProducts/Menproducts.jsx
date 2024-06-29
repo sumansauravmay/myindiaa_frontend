@@ -29,6 +29,11 @@ const Menproducts = () => {
     getData();
   }, []);
 
+  const handletitle = (title) => {
+    const words = title.split(" ");
+    return words.slice(0, 3).join(" ");
+  };
+
   if (loading) {
     return <Loading />;
   }
@@ -82,7 +87,7 @@ const Menproducts = () => {
                 <ProductCard
                   key={item.id}
                   image={item.image}
-                  title={item.title}
+                  title={handletitle(item.title)}
                   price={item.price}
                   btnval="See Details"
                   handledetails={`/products/${item.id}`}
