@@ -12,6 +12,7 @@ import CartCheckout from "../../Components/CartCheckout";
 import NoCartData from "../../Components/NoCartData";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Toast from "../../Components/Toast";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -19,7 +20,6 @@ const Cart = () => {
   const [loading, setLoading] = useState(false);
   const cartdata = useSelector((store) => store.cartReducer.cart);
   // console.log("cartfromstore", cartdata);
-
 
   useEffect(() => {
     const fetchCartData = async () => {

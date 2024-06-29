@@ -2,8 +2,12 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Toast from "../../Components/Toast";
 
 const Register = () => {
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -16,11 +20,14 @@ const Register = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
     if (!email || !phone || !name || !password) {
-      alert("Please put input!");
+      setToastMessage("All the input fields are empty!");
+      setShowToast(true);
     } else if (phone.length < 10 || phone.length > 10) {
-      alert("Please check phone number!");
+      setToastMessage("Please check phone number!");
+      setShowToast(true);
     } else if (password.length < 8) {
-      alert("Password length should be more 7");
+      setToastMessage("Password length should be more 7!");
+      setShowToast(true);
     } else if (
       name.includes(0) ||
       name.includes(1) ||
@@ -33,9 +40,11 @@ const Register = () => {
       name.includes(8) ||
       name.includes(9)
     ) {
-      alert("Wrong name format!");
+      setToastMessage("Invalid name formate!");
+      setShowToast(true);
     } else if (!regex.test(email)) {
-      alert("Eamil doesn't exist!");
+      setToastMessage("Eamil doesn't exist!");
+      setShowToast(true);
     } else {
       axios
         .post("https://myindiaa-deployement.onrender.com/register", userData)
@@ -47,6 +56,11 @@ const Register = () => {
           console.log(err);
         });
     }
+  };
+
+
+  const handleCloseToast = () => {
+    setShowToast(false);
   };
 
   return (
@@ -150,6 +164,11 @@ const Register = () => {
           >
             Sign Up
           </button>
+
+
+          {showToast && (
+            <Toast message={toastMessage} onClose={handleCloseToast} />
+          )}
         </div>
       </div>
     </>

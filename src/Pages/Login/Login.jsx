@@ -2,8 +2,12 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Toast from "../../Components/Toast";
 
 const Login = () => {
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,11 +15,14 @@ const Login = () => {
   const handleLogin = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (!email || !password) {
-      alert("put email or password!");
+      setToastMessage("Please enter email and password!");
+      setShowToast(true);
     } else if (!regex.test(email)) {
-      alert("Eamil doesn't exist!");
+      setToastMessage("Invalid email format!");
+      setShowToast(true);
     } else if (password.length < 8) {
-      alert("Password length should be more 7");
+      setToastMessage("Password should be at least 8 characters long!");
+      setShowToast(true);
     } else {
       axios
         .get("https://myindiaa-deployement.onrender.com/register")
@@ -33,14 +40,17 @@ const Login = () => {
     let x = creds.filter((item) => {
       return item.email === email;
     });
-
     if (x.length > 0) {
-      alert("Login Successful!");
       navigate("/");
       localStorage.setItem("username", JSON.stringify(x[0].name));
     } else {
-      alert("Wrong Credentials!");
+      setToastMessage("Wrong Credentials!");
+      setShowToast(true);
     }
+  };
+
+  const handleCloseToast = () => {
+    setShowToast(false);
   };
 
   return (
@@ -107,6 +117,10 @@ const Login = () => {
           >
             Login
           </button>
+
+          {showToast && (
+            <Toast message={toastMessage} onClose={handleCloseToast} />
+          )}
         </div>
       </div>
     </>
