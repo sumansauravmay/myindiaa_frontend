@@ -3,21 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   cart,
   deletecart,
+  cartDataReset,
   updatecartvalue,
 } from "../../Redux/CartReducer/action";
 import CartCard from "../../Components/CartCard";
 import Loading from "../../Components/Loading";
 import CartCheckout from "../../Components/CartCheckout";
 import NoCartData from "../../Components/NoCartData";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const Cart = () => {
+  // const location = useLocation();
+  // console.log("location in cart", location);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const cartdata = useSelector((store) => store.cartReducer.cart);
-  console.log("cartfromstore", cartdata);
+  // console.log("cartfromstore", cartdata);
 
   useEffect(() => {
     const fetchCartData = async () => {
@@ -55,11 +58,6 @@ const Cart = () => {
       x = calculateAmount() + calculateDeliveryCharges();
     }
     localStorage.setItem("CartAmount", JSON.stringify(x));
-    // if (cartdata.length > 0) {
-    //   localStorage.setItem("CartAmount", JSON.stringify(x));
-    // } else {
-    //   localStorage.removeItem("CartAmount");
-    // }
     return x;
   };
 
@@ -76,9 +74,12 @@ const Cart = () => {
   const handlechekcout = () => {
     let username = JSON.parse(localStorage.getItem("username")) || "";
     if (username) {
+      dispatch(cartDataReset());
+      alert("Item ordered successfully!");
       navigate("/");
       localStorage.removeItem("CartAmount");
     } else {
+      alert("Please login first!");
       navigate("/login");
     }
   };

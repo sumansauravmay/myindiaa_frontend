@@ -8,6 +8,7 @@ import {
   UPDATE_CART_FAILED,
   UPDATE_CART_REQUEST,
   UPDATE_CART_SUCCESS,
+  CART_RESET_SUCCESS,
 } from "./actionType";
 import axios from "axios";
 
@@ -50,6 +51,12 @@ const getRemoveItemFailed = () => {
   return { type: REMOVE_CART_ITEM_FAILED };
 };
 
+export const resetCartSuccess = () => {
+  return {
+    type: CART_RESET_SUCCESS,
+  };
+};
+
 export const cart = (product) => async (dispatch) => {
   dispatch(getCartRequestAction());
   if (product) {
@@ -63,7 +70,7 @@ export const cart = (product) => async (dispatch) => {
         axios
           .get("https://myindiaa-deployement.onrender.com/cart")
           .then((res) => {
-            console.log("cart", res.data);
+            // console.log("cart", res.data);
             dispatch(getCartSuccessAction(res.data));
           });
       })
@@ -110,13 +117,31 @@ export const updatecartvalue = (id, data) => (dispatch) => {
     .patch(`https://myindiaa-deployement.onrender.com/cart/${id}`, { ...data })
     .then((res) => {
       axios
-      .get("https://myindiaa-deployement.onrender.com/cart")
-      .then((res) => {
-        console.log("update",res.data);
-        dispatch(getUpdateSuceess(res.data));
-      });
+        .get("https://myindiaa-deployement.onrender.com/cart")
+        .then((res) => {
+          console.log("update", res.data);
+          dispatch(getUpdateSuceess(res.data));
+        });
     })
     .catch((err) => {
       dispatch(getUpdateFailed());
     });
+};
+
+export const cartDataReset = () => (dispatch) => {
+  axios.get('https://myindiaa-deployement.onrender.com/cart')
+        .then(res => {
+          const items = res.data;
+          const deletePromises = items.map(item => 
+            axios.delete(`https://myindiaa-deployement.onrender.com/cart/${item.id}`)
+          );
+          return Promise.all(deletePromises);
+        })
+        .then(() => {
+          console.log('All items deleted successfully');
+          dispatch(resetCartSuccess());
+        })
+        .catch(err => {
+          console.error('Error deleting items:', err);
+        });
 };

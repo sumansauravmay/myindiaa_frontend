@@ -8,6 +8,7 @@ import {
   UPDATE_CART_FAILED,
   UPDATE_CART_REQUEST,
   UPDATE_CART_SUCCESS,
+  CART_RESET_SUCCESS,
 } from "./actionType";
 
 const initialState = {
@@ -70,7 +71,7 @@ export const reducer = (state = initialState, { type, payload }) => {
         ...state,
         loading: false,
         isError: false,
-        cart: payload
+        cart: payload,
       };
     }
     case UPDATE_CART_FAILED: {
@@ -80,6 +81,13 @@ export const reducer = (state = initialState, { type, payload }) => {
         isError: true,
       };
     }
+    case CART_RESET_SUCCESS: {
+      return {
+        ...state,
+        cart: [],
+      };
+    }
+
     default:
       return state;
   }

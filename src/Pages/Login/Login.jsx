@@ -1,9 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const Login = () => {
+  // const location = useLocation();
+  // console.log("location in login", location);
+  const [searchParams, setSearchParams]=useSearchParams();
+  console.log("search", searchParams)
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
