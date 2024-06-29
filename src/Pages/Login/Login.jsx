@@ -38,7 +38,7 @@ const Login = () => {
 
   const checklogincreds = (creds) => {
     let x = creds.filter((item) => {
-      return item.email === email;
+      return item.email === email && item.password===password;
     });
     if (x.length > 0) {
       navigate("/");
