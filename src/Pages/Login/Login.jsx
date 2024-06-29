@@ -27,7 +27,6 @@ const Login = () => {
       axios
         .get("https://myindiaa-deployement.onrender.com/register")
         .then((res) => {
-          // console.log("logindata", res.data);
           checklogincreds(res.data);
         })
         .catch((err) => {
@@ -38,7 +37,7 @@ const Login = () => {
 
   const checklogincreds = (creds) => {
     let x = creds.filter((item) => {
-      return item.email === email && item.password===password;
+      return item.email === email && item.password === password;
     });
     if (x.length > 0) {
       navigate("/");
@@ -87,7 +86,6 @@ const Login = () => {
         </div>
 
         {/* Password */}
-
         <div className="flex justify-center">
           <div>
             <label

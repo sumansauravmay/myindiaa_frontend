@@ -12,20 +12,16 @@ import CartCheckout from "../../Components/CartCheckout";
 import NoCartData from "../../Components/NoCartData";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import Toast from "../../Components/Toast";
 
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
   const cartdata = useSelector((store) => store.cartReducer.cart);
-  // console.log("cartfromstore", cartdata);
+  const loading = useSelector((state) => state.cartReducer.loading);
 
   useEffect(() => {
     const fetchCartData = async () => {
-      setLoading(true);
       await dispatch(cart());
-      setLoading(false);
     };
     fetchCartData();
   }, [dispatch]);
@@ -65,7 +61,6 @@ const Cart = () => {
       return "Congratulations, You got free delivery!";
     } else {
       let y = 1000 - calculateAmount();
-      // console.log(y);
       return `Add ${y} more to get free delivery!`;
     }
   };
