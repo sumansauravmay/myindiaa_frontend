@@ -34,6 +34,7 @@ Check out the live demo of the project [here](https://prismatic-taffy-891d87.net
 - Product Listing
 - Product Search
 - Product For Men And Women
+- Search by product title or description
 - Product Details
 - Shopping Cart
 - Checkout Process
