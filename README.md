@@ -100,7 +100,9 @@ now add a new file inside build folder named \_redirects and write
 
 ## Project Structure
 
-ecommerce-frontend/
+
+```bash
+   ecommerce-frontend/
 ├── public/
 │   ├── index.html
 │   └── ...
@@ -117,6 +119,8 @@ ecommerce-frontend/
 ├── tailwind.config.js
 ├── package.json
 └── ...
+```
+
 
 
 ## Contributing
