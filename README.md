@@ -24,3 +24,26 @@ Welcome to the E-commerce Website Frontend repository. This project is a fully r
 
 Check out the live demo of the project [here](https://prismatic-taffy-891d87.netlify.app/).
 
+## Features
+
+- User Authentication (Sign Up, Login, Logout)
+- Product Listing
+- Product Search
+- Product For Men And Women
+- Product Details
+- Shopping Cart
+- Checkout Process
+- Responsive Design
+
+
+## Technologies Used
+
+- **React**: JavaScript library for building user interfaces
+- **Redux**: State management
+- **React Router**: Declarative routing for React
+- **Axios**: Promise-based HTTP client for API calls
+- **Tailwind CSS**: For the Styling
+- **React Hook Form**: Form validation and management
+
+
+## Installation
