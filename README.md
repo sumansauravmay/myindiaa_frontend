@@ -20,5 +20,7 @@ Welcome to the E-commerce Website Frontend repository. This project is a fully r
 
 
 
+## Demo
 
+Check out the live demo of the project [here](https://prismatic-taffy-891d87.netlify.app/).
 
