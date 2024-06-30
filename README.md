@@ -26,7 +26,7 @@ Check out the live demo of the project [here](https://prismatic-taffy-891d87.net
 
 - Backend Deployed Link(Render): [https://myindiaa-deployement.onrender.com/](https://myindiaa-deployement.onrender.com/)
 
-- Video Link: []
+- Demo Video Link: [https://drive.google.com/file/d/1crNo32fZ2CEEWfOo8to7u0XNJAvnrpij/view?usp=sharing](https://drive.google.com/file/d/1crNo32fZ2CEEWfOo8to7u0XNJAvnrpij/view?usp=sharing)
 
 ## Features
 
@@ -103,9 +103,7 @@ now add a new file inside build folder named \_redirects and write
     /* /index.html 200
 ```
 
-
 ## Project Structure
-
 
 ```bash
    ecommerce-frontend/
@@ -127,8 +125,6 @@ now add a new file inside build folder named \_redirects and write
 └── ...
 ```
 
-
-
 ## Contributing
 
 Contributions are welcome! Please follow these steps to contribute:
@@ -146,19 +142,13 @@ Contributions are welcome! Please follow these steps to contribute:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-
-
 ## Contact
 
 For any inquiries, please contact:
 
 ```bash
-     Name: Suman Saurav
-    Email: sumansauravmay12345@gmail.com@example.com
+    Name: Suman Saurav
+    Email: sumansauravmay12345@gmail.com
     GitHub: https://github.com/sumansauravmay
+    LinkedIn: https://www.linkedin.com/in/suman-saurav-06896b231/
 ```
-
-
-
-
-
