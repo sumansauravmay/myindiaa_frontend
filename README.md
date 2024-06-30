@@ -22,6 +22,10 @@ Welcome to the E-commerce Website Frontend repository. This project is a fully r
 
 Check out the live demo of the project [here](https://prismatic-taffy-891d87.netlify.app/).
 
+Frontend Deployed Link(Netlify): [https://prismatic-taffy-891d87.netlify.app/] (https://prismatic-taffy-891d87.netlify.app/)
+Backend Deployed Link(Render): []
+Video Link: []
+
 ## Features
 
 - User Authentication (Sign Up, Login, Logout)
@@ -142,6 +146,15 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 
 
+## Contact
+
+For any inquiries, please contact:
+
+```bash
+     Name: Suman Saurav
+    Email: sumansauravmay12345@gmail.com@example.com
+    GitHub: https://github.com/sumansauravmay
+```
 
 
 
