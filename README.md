@@ -47,3 +47,33 @@ Check out the live demo of the project [here](https://prismatic-taffy-891d87.net
 
 
 ## Installation
+
+### Prerequisites
+
+- Node.js (>=14.x)
+- npm (>=6.x) or yarn (>=1.22.x)
+
+### Steps
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/sumansauravmay/myindiaa_frontend.git
+   ```
+
+2. Navigate to the project directory:
+
+```bash
+   cd myindiaa_frontend
+   ```
+
+
+
+
+
+
+
+
+
+
+
