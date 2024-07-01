@@ -12,6 +12,7 @@ import CartCheckout from "../../Components/CartCheckout";
 import NoCartData from "../../Components/NoCartData";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import LoadingCart from "../../Components/LoadingCart";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -79,7 +80,7 @@ const Cart = () => {
   };
 
   if (loading) {
-    return <Loading />;
+    return <LoadingCart/>;
   }
 
   return (
