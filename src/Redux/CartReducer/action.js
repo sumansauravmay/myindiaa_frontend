@@ -70,8 +70,8 @@ export const cart = (product) => async (dispatch) => {
         axios
           .get("https://myindiaa-deployement.onrender.com/cart")
           .then((res) => {
-            // console.log("cart", res.data);
             dispatch(getCartSuccessAction(res.data));
+            alert("Product added successfully!")
           });
       })
       .catch((err) => {

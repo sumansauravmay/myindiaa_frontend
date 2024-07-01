@@ -10,8 +10,8 @@ const ProductsDetailsCard = ({
   cartData,
 }) => {
   return (
-    <div className="md:flex mt-8 md:-mx-4">
-      <div className="w-full h-92 md:mx-4 rounded-md bg-cover bg-center md:w-1/2 shadow-lg shadow-indigo-500/40">
+    <div className="md:flex mt-8 md:-mx-4 lg:mx-32 shadow-md shadow-indigo-500/40">
+      <div className="w-full h-92 md:mx-4 rounded-md bg-cover bg-center md:w-1/2">
         <div className="flex items-center h-full">
           <div className="px-10 max-w-xl">
             <img className="h-[32rem]" src={image} alt="pic" />
@@ -19,9 +19,9 @@ const ProductsDetailsCard = ({
         </div>
       </div>
 
-      <div className="w-full h-92 mt-8 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:mt-0 md:w-1/2 shadow-md shadow-indigo-500/40">
+      <div className="w-full h-92 mt-8 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:mt-0 md:w-1/2">
         <div className="bg-opacity-50 flex items-center h-full">
-          <div className="px-10 max-w-xl">
+          <div className="px-5 max-w-xl mb-2">
             <h2 className="text-3xl text-black font-semibold">{title}</h2>
             <p className="mt-2 text-black text-xl">{description}</p>
 

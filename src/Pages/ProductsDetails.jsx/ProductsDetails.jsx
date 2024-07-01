@@ -18,7 +18,6 @@ const ProductsDetails = () => {
     axios
       .get(`https://myindiaa-deployement.onrender.com/products/${product_id}`)
       .then((res) => {
-        // console.log(res.data);
         setProductDetails(res.data);
         setLoading(false);
       });
